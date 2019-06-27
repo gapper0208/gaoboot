@@ -90,8 +90,8 @@ public class JdbcResource implements Resource {
 			ResultSetMetaData rsmd = rs.getMetaData();
 			// 设置文件名
 			md.setFileName(StringUtils.raiseInitail(tableName) + ".java");
-			// 设置entity的包的位置
-			md.setPackageName(MainConfigUtils.getPropery("gaoboot.entity.package"));
+			// 设置基本包的名字，比如com.gao,后续在不同的代码生成器中，再将包名补全。
+			md.setBasePackageName(MainConfigUtils.getPropery("gaoboot.base.package"));
 			md.setClassName(StringUtils.raiseInitail(tableName));
 			md.setFieldList(new ArrayList<Tuple<String,Class>>());
 			

@@ -12,7 +12,6 @@ import com.gao.metadata.java.JavaClassMetaData;
 import com.gao.utils.StringUtils;
 import com.gao.utils.Tuple;
 
-// ИљОн
 public class JavaEntityAutoCoder implements AutoCoder<JavaClassMetaData> {
 	
 	public Code generateCode(JavaClassMetaData md) {
@@ -20,7 +19,7 @@ public class JavaEntityAutoCoder implements AutoCoder<JavaClassMetaData> {
 		PrintWriter pw = new PrintWriter(bout);
 		
 		// package
-		pw.println("package " + md.getPackageName() + ";");
+		pw.println("package " + md.getBasePackageName() + ".entity;");
 		// import
 		Set<Class> importSet = md.getImportSet();
 		for (Class clazz : importSet) {

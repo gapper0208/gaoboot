@@ -10,7 +10,7 @@ import com.gao.utils.Tuple;
 
 public class JavaClassMetaData implements MetaData {
 	private String fileName;
-	private String packageName;
+	private String basePackageName;
 	private Set<Class> importSet = new HashSet<>();
 	private String className;
 	private String superClassName;
@@ -23,11 +23,11 @@ public class JavaClassMetaData implements MetaData {
 	public void setFileName(String fileName) {
 		this.fileName = fileName;
 	}
-	public String getPackageName() {
-		return packageName;
+	public String getBasePackageName() {
+		return basePackageName;
 	}
-	public void setPackageName(String packageName) {
-		this.packageName = packageName;
+	public void setBasePackageName(String basePackageName) {
+		this.basePackageName = basePackageName;
 	}
 	public Set<Class> getImportSet() {
 		return importSet;

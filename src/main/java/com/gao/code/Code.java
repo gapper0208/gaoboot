@@ -1,5 +1,6 @@
 package com.gao.code;
 
+// 代表任意代码的接口
 public interface Code {
 	// 代码所在的文件名
 	String fileName();
