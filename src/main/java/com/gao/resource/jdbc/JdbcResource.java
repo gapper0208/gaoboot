@@ -3,6 +3,7 @@ package com.gao.resource.jdbc;
 import java.io.IOException;
 import java.io.InputStream;
 import java.sql.Connection;
+import java.sql.DatabaseMetaData;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -84,22 +85,39 @@ public class JdbcResource implements Resource {
 		ResultSet rs = null;
 		try {
 			conn = getConnection();
+			
+			// 获取主键的列名（暂时没有考虑复合主键）
+			DatabaseMetaData dbmd = conn.getMetaData();
+			ResultSet key_rs = dbmd.getPrimaryKeys("", "", tableName);
+			String primaryColumnName = null;
+			if(key_rs.next()) {
+				primaryColumnName = key_rs.getString("COLUMN_NAME");
+			}
+			
 			String sql = "select * from " + tableName;
 			ps = conn.prepareStatement(sql);
 			rs = ps.executeQuery();
 			ResultSetMetaData rsmd = rs.getMetaData();
-			// 设置文件名
-			md.setFileName(StringUtils.raiseInitail(tableName) + ".java");
+			
+			// 设置基本文件名(不带前缀，不带后缀)，将来在具体的代码生成器中在加前后缀。比如: I+文件名+Dao
+			md.setFileName(StringUtils.raiseInitail(tableName));
 			// 设置基本包的名字，比如com.gao,后续在不同的代码生成器中，再将包名补全。
 			md.setBasePackageName(MainConfigUtils.getPropery("gaoboot.base.package"));
 			md.setClassName(StringUtils.raiseInitail(tableName));
 			md.setFieldList(new ArrayList<Tuple<String,Class>>());
 			
 			int columnCount = rsmd.getColumnCount();
+			
 			for(int i = 1; i <= columnCount; i++) {
 				String columnClassName = rsmd.getColumnClassName(i);
 				String columnName = rsmd.getColumnName(i);
 				Class<?> clazz = Class.forName(columnClassName);
+				
+				// 如果迭代的列名与主键的列名相同，则把该列（也既是主键）的类型和列名封装进自定义的元数据对象中
+				if(columnName.equals(primaryColumnName)) {
+					md.setObjectIdClass(clazz);
+					md.setObjectIdName(columnName);
+				}
 				
 				if(!langClassList.contains(clazz)) {
 					md.getImportSet().add(clazz);

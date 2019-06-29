@@ -42,9 +42,10 @@ public class JavaCode implements Code {
 	public String language() {
 		return "java";
 	}
+	// 在运行时，由jvm覆盖该方法的返回值
 	@Override
 	public String description() {
-		return "entity, or model";
+		return "java code";
 	}
 	@Override
 	public String fileName() {
@@ -62,6 +63,10 @@ public class JavaCode implements Code {
 	}
 	public void setFileName(String fileName) {
 		this.fileName = fileName;
+	}
+	@Override
+	public String getExt() {
+		return "java";
 	}
 	
 }

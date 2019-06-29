@@ -12,5 +12,7 @@ public interface Code {
 	String getCodeText();
 	// 将动态生成的源代码存盘
 	void saveToDisk(String path);
+	// 获取源代码的扩展名
+	String getExt();
 	
 }

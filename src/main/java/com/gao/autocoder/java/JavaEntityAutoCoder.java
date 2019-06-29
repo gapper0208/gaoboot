@@ -52,7 +52,7 @@ public class JavaEntityAutoCoder implements AutoCoder<JavaClassMetaData> {
 		
 		String codeText = new String(bb);
 		
-		JavaCode jc = new JavaCode(md.getFileName(), codeText);
+		JavaCode jc = new JavaCode(md.getFileName() + ".java", codeText);
 		
 		return jc;
 	}

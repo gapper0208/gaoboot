@@ -1,10 +1,10 @@
 package com.gao.metadata.java;
 
+import java.io.Serializable;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import com.gao.code.Code;
 import com.gao.metadata.MetaData;
 import com.gao.utils.Tuple;
 
@@ -16,6 +16,10 @@ public class JavaClassMetaData implements MetaData {
 	private String superClassName;
 	private Set<Class> interfaceSet;
 	private List<Tuple<String,Class>> fieldList;
+	// 主属性类型
+	private Class ObjectIdClass;
+	// 主属性名字
+	private String ObjectIdName;
 	
 	public String getFileName() {
 		return fileName;
@@ -58,5 +62,17 @@ public class JavaClassMetaData implements MetaData {
 	}
 	public void setFieldList(List<Tuple<String, Class>> fieldList) {
 		this.fieldList = fieldList;
+	}
+	public Class getObjectIdClass() {
+		return ObjectIdClass;
+	}
+	public void setObjectIdClass(Class objectIdClass) {
+		ObjectIdClass = objectIdClass;
+	}
+	public String getObjectIdName() {
+		return ObjectIdName;
+	}
+	public void setObjectIdName(String objectIdName) {
+		ObjectIdName = objectIdName;
 	}
 }

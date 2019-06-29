@@ -19,16 +19,23 @@ public class AppTest {
 	@Test
 	public void test() throws Exception {
 		
+		String basePath = FileUtils.package2FilePath("gaoboot.base.package") + File.separator;
+		
 		Resource r = new JdbcResource("db.properties");
 		List<? extends MetaData> list = r.parse();
 		
-		AutoCoder ac = new JavaDaoInterfaceAutoCoder();
+		AutoCoder ac = new JavaEntityAutoCoder();
+		AutoCoder ac2 = new JavaDaoInterfaceAutoCoder();
 		for (MetaData md : list) {
 			Code code = ac.generateCode(md);
-			String path = FileUtils.package2FilePath("gaoboot.base.package") + File.separator + "entity";
+			Code code2 = ac2.generateCode(md);
 			String codeText = code.getCodeText();
 			System.out.println(codeText);
-			// code.saveToDisk(path);
+			String codeText2 = code2.getCodeText();
+			System.out.println(codeText2);
+			
+			code.saveToDisk(basePath + "entity");
+			code2.saveToDisk(basePath + "dao");
 		}
 	}
 }
