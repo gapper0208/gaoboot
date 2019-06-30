@@ -13,6 +13,7 @@ import com.gao.utils.MainConfigUtils;
 public class JavaCode implements Code {
 	private String fileName;
 	private String codeText;
+	private String description;
 	public JavaCode() {
 	}
 	public JavaCode(String fileName) {
@@ -42,11 +43,7 @@ public class JavaCode implements Code {
 	public String language() {
 		return "java";
 	}
-	// 在运行时，由jvm覆盖该方法的返回值
-	@Override
-	public String description() {
-		return "java code";
-	}
+	
 	@Override
 	public String fileName() {
 		return fileName;
@@ -68,5 +65,12 @@ public class JavaCode implements Code {
 	public String getExt() {
 		return "java";
 	}
+	public String getDescription() {
+		return description;
+	}
+	public void setDescription(String description) {
+		this.description = description;
+	}
+	
 	
 }

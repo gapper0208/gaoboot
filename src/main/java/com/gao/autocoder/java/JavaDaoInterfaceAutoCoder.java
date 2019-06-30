@@ -42,6 +42,8 @@ public class JavaDaoInterfaceAutoCoder implements AutoCoder<JavaClassMetaData> {
 		byte[] bb = bout.toByteArray();
 		String codeText = new String(bb);
 		JavaCode jc = new JavaCode("I" + md.getFileName() + "Dao.java", codeText);
+		jc.setDescription("java dao interface");
+		
 		
 		return jc;
 	}
