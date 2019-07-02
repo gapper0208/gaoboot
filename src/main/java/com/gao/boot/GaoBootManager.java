@@ -30,7 +30,7 @@ public class GaoBootManager {
 		AutoCoder ac = factory.getEntityAutoCoder();
 		AutoCoder ac2 = factory.getDaoInterfaceAutoCoder();
 		AutoCoder ac3 = factory.getDaoImplAutoCoder();
-		for (MetaData md : list) {
+		for (MetaData md : list) { 
 			Code code = ac.generateCode(md);
 			Code code2 = ac2.generateCode(md);
 			Code code3 = ac3.generateCode(md);
