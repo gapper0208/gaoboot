@@ -27,9 +27,9 @@ public class GaoBootManager {
 		Resource r = factory.getResource();
 		List<? extends MetaData> list = r.parse();
 		
-		AutoCoder ac = new JavaEntityAutoCoder();
-		AutoCoder ac2 = new JavaDaoInterfaceAutoCoder();
-		AutoCoder ac3 = new JavaJdbcDaoImplAutoCoder();
+		AutoCoder ac = factory.getEntityAutoCoder();
+		AutoCoder ac2 = factory.getDaoInterfaceAutoCoder();
+		AutoCoder ac3 = factory.getDaoImplAutoCoder();
 		for (MetaData md : list) {
 			Code code = ac.generateCode(md);
 			Code code2 = ac2.generateCode(md);
