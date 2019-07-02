@@ -27,13 +27,13 @@ public class GaoBootManager {
 		Resource r = factory.getResource();
 		List<? extends MetaData> list = r.parse();
 		
-		AutoCoder ac = factory.getEntityAutoCoder();
-		AutoCoder ac2 = factory.getDaoInterfaceAutoCoder();
-		AutoCoder ac3 = factory.getDaoImplAutoCoder();
-		for (MetaData md : list) { 
-			Code code = ac.generateCode(md);
-			Code code2 = ac2.generateCode(md);
-			Code code3 = ac3.generateCode(md);
+		AutoCoder entityAutoCoder = factory.getEntityAutoCoder();
+		AutoCoder daoInterfaceAutoCoder = factory.getDaoInterfaceAutoCoder();
+		AutoCoder daoImplAutoCoder = factory.getDaoImplAutoCoder();
+		for (MetaData md : list) {
+			Code code = entityAutoCoder.generateCode(md);
+			Code code2 = daoInterfaceAutoCoder.generateCode(md);
+			Code code3 = daoImplAutoCoder.generateCode(md);
 			
 			// for test
 			/*
